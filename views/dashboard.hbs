@@ -1,0 +1,39 @@
+<h6>Dashboard</h6>
+<h3>Welcome {{name}} </h3>
+<p>Here are your observations:</p>
+{{#if observations}}
+  <table class='striped'>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each observations}}
+        <tr>
+          <td><a href='/observations/{{_id}}'>{{title}}</a></td>
+          <td>{{formatDate createdDate 'MMM Do YYYY, h:mm:ss a'}}</td>
+          <td>{{longitude}} / {{latitude}}</td>
+          <td><span class='status'>{{status}}</span></td>
+          <td><a href='/observations/edit/{{_id}}' class='btn btn-float'><i
+                class='fas fa-edit'
+              ></i></a>
+            <form action='/observations/{{_id}}' method='POST' id='delete-form'>
+              <input type='hidden' name='_method' value='DELETE' />
+              <button type='submit' class='red btn'><i
+                  class='fas fa-trash'
+                ></i></button>
+            </form></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+
+  <p>You have not made any observations yet</p>
+
+{{/if}}
