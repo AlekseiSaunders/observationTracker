@@ -1,0 +1,104 @@
+<h3>Observations</h3>
+<div class='row'>
+  <form action='/observations' method='POST' class='col s12'>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='text' id='title' name='title' />
+        <label for='title'>Title of Observation</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <select name='status' id='status'>
+          <option value='public' selected>Public</option>
+          <option value='private'>Private</option>
+        </select>
+        <label for='status'>Status</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='text' name='commonName' id='commonName' />
+        <label for='commonName'>Common Name</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <select name='generalTaxa' id='generalTaxa'>
+          <option value='mammal' selected>Mammal</option>
+          <option value='bird'>Bird</option>
+          <option value='reptile'>Reptile</option>
+          <option value='amphibian'>Amphibian</option>
+          <option value='bony fish'>Bony Fish</option>
+          <option value='cartilaginous fish'>Cartilaginous Fish</option>
+          <option value='insect'>Insect</option>
+          <option value='Spider'>Spider</option>
+          <option value='plants'>Plants</option>
+        </select>
+        <label for='generalTaxa'>General Taxa</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='text' name='genus' id='genus' />
+        <label for='genus'>Genus</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='text' name='species' id='species' />
+        <label for='species'>Species</label>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='input-field'>
+        <h5>Details of Observation:</h5>
+        <textarea name='details' id='details' cols='30' rows='10'></textarea>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='input-field'>
+        <input type='number' name='number' id='number' />
+        <label for='number'>Number Observed</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='number' step='0.001' name='latitude' id='latitude' />
+        <label for='latitude'>Latitude</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='number' step='0.001' name='longitude' id='longitude' />
+        <label for='longitude'>Longitude</label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='input-field'>
+        <input type='number' step='0.001' name='accuracy' id='accuracy' />
+        <label for='accuracy'>Accuracy</label>
+      </div>
+    </div>
+    <div class='row'>
+      <button type='button' id='getLocation'>Get Location</button>
+    </div>
+    <div class='row'>
+      <input type='submit' value='Save' class='btn' />
+      <a href='/dashboard' class='btn orange'>Cancel</a>
+    </div>
+  </form>
+</div>
+<script>const getLocationBtn = document.getElementById('getLocation'); const
+  latBox = document.getElementById('latitude'); const longBox =
+  document.getElementById('longitude'); const accBox =
+  document.getElementById('accuracy'); const locationOptions = {
+  enableHightAccuracy: true, timeout: 5000, maximumAge: 0, }; function
+  success(pos) { const crd = pos.coords; latBox.value = crd.latitude.toFixed(3);
+  longBox.value = crd.longitude.toFixed(3); accBox.value =
+  crd.accuracy.toFixed(3); } function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`); }
+  getLocationBtn.addEventListener('click', (e) => { e.preventDefault();
+  navigator.geolocation.getCurrentPosition(success, error, locationOptions); });</script>

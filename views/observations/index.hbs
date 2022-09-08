@@ -1,0 +1,25 @@
+<h1>Observations</h1>
+<div class='row'>
+  {{#each observations}}
+    <div class='col s12 m4'>
+      <div class='card'>
+        <div class='card-image'>
+        </div>
+        <div class='card-content center-align'>
+          <h5>{{title}}</h5>
+          <p>{{stripTags details}}</p>
+          <br />
+          <div class='chip'>
+            <img src='{{user.image}}' alt='{{user.displayName}}' />
+            <a href='/observations/user/{{user.id}}'>{{user.displayName}}</a>
+          </div>
+        </div>
+        <div class='card-action center-align'>
+          <a href='/observations/{{_id}}' class='btn grey'>Read More</a>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <p>No Observations to display</p>
+  {{/each}}
+</div>
