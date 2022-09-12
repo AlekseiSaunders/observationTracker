@@ -96,7 +96,7 @@ router.put('/:id', ensureAuth, async (req, res) => {
       return res.render('error/404');
     }
     if (observation.user != req.user.id) {
-      res.redirect('/stories');
+      res.redirect('/observations');
     } else {
       observation = await Observation.findOneAndUpdate(
         { _id: req.params.id },
