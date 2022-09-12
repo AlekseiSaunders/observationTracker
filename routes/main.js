@@ -12,6 +12,7 @@ router.get('/', ensureGuest, mainController.getIndex);
 // @route GET /dashboard
 // The lean method on the end of the story retrieval by user.id returns a javascript object, not a mongoose document
 // This is needed to allow for the use of the returned data to be used in the handlebars template
+
 router.get('/dashboard', ensureAuth, mainController.getDashboard);
 
 module.exports = router;

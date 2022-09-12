@@ -10,6 +10,7 @@ router.get('/google', authController.getGoogleLogin);
 
 // @desc Google auth callback
 // @route GET /auth/google/callback
+
 router.get(
   '/google/callback',
   passport.authenticate('google', {
@@ -20,6 +21,7 @@ router.get(
 
 // @desc Logout user
 // @route Get /auth/logout
+
 router.get('/logout', authController.getLogout);
 
 module.exports = router;
