@@ -101,7 +101,7 @@ exports.deleteObservation = async (req, res) => {
 
 exports.showUserObservations = async (req, res) => {
   try {
-    let observations = await Observation.find({
+    const observations = await Observation.find({
       user: req.params.userId,
       status: 'public',
     })

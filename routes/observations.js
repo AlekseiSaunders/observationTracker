@@ -1,10 +1,7 @@
-const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const observationController = require('../controllers/observation');
-
-const Observation = require('../models/Observation');
 
 // @desc Show all observations
 // @route GET /observations
