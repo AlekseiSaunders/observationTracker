@@ -1,6 +1,11 @@
 <h3>Observations</h3>
 <div class='row'>
-  <form action='/observations' method='POST' class='col s12'>
+  <form
+    action='/observations'
+    enctype='multipart/form-data'
+    method='POST'
+    class='col s12'
+  >
     <div class='row'>
       <div class='input-field'>
         <input type='text' id='title' name='title' />
@@ -60,6 +65,14 @@
 
     <div class='row'>
       <div class='input-field'>
+        <h5>Add an image</h5>
+        <label for='imgUpload' class='form-label'></label>
+        <input type='file' class='form-control' id='imageUpload' name='file' />
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='input-field'>
         <input type='number' name='number' id='number' />
         <label for='number'>Number Observed</label>
       </div>
@@ -92,26 +105,15 @@
   </form>
 </div>
 <script>
-// declare variables for location data
-const getLocationBtn = document.getElementById('getLocation'); 
-const latBox = document.getElementById('latitude'); 
-const longBox = document.getElementById('longitude'); 
-const accBox = document.getElementById('accuracy'); 
-// declare options for location collection
-const locationOptions = {
-  enableHightAccuracy: true, timeout: 5000, maximumAge: 0, }; 
-// create callback function to collect location data from client, truncating values to 3 digits
-function success(pos) { 
-	const crd = pos.coords; 
-	latBox.value = crd.latitude.toFixed(3);
-  longBox.value = crd.longitude.toFixed(3); 
-	accBox.value = crd.accuracy.toFixed(3); 
-} 
-// create error callback function to deal with errors in client location capture
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`); 
-}
-// eventListener to run location collection via Web API getCurrentPosition
+  const getLocationBtn = document.getElementById('getLocation'); const latBox =
+  document.getElementById('latitude'); const longBox =
+  document.getElementById('longitude'); const accBox =
+  document.getElementById('accuracy'); const locationOptions = {
+  enableHightAccuracy: true, timeout: 5000, maximumAge: 0, }; function
+  success(pos) { const crd = pos.coords; latBox.value = crd.latitude.toFixed(3);
+  longBox.value = crd.longitude.toFixed(3); accBox.value =
+  crd.accuracy.toFixed(3); } function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`); }
   getLocationBtn.addEventListener('click', (e) => { e.preventDefault();
   navigator.geolocation.getCurrentPosition(success, error, locationOptions); });
 </script>
