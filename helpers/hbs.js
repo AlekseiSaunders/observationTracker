@@ -47,4 +47,9 @@ module.exports = {
         ' selected="selected"$&'
       );
   },
+  capitalize: function (input) {
+    let inputArray = input.split('');
+    inputArray[0] = inputArray[0].toUpperCase();
+    return inputArray.join('');
+  },
 };
