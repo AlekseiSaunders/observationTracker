@@ -1,3 +1,4 @@
+const cloudinary = require('../middleware/cloudinary');
 const Observation = require('../models/Observation');
 
 exports.getObservations = async (req, res) => {
@@ -32,12 +33,28 @@ exports.showSingleObservation = async (req, res) => {
   }
 };
 
-
-
 exports.processObservation = async (req, res) => {
+  console.log(req.file);
   try {
-    req.body.user = req.user.id;
-    await Observation.create(req.body);
+    // upload image to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
+
+    await Observation.create({
+      title: req.body.title,
+      status: req.body.status,
+      commonName: req.body.commonName,
+      generalTaxa: req.body.generalTaxa,
+      genus: req.body.genus,
+      species: req.body.species,
+      details: req.body.details,
+      number: req.body.number,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      accuracy: req.body.accuracy,
+      image: result.secure_url,
+      cloudinaryId: result.public_id,
+      user: req.user.id,
+    });
     res.redirect('/dashboard');
   } catch (error) {
     console.error(error);
