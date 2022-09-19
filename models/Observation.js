@@ -15,6 +15,14 @@ const ObservationSchema2 = new mongoose.Schema(
       default: 'public',
       enum: ['public', 'private'],
     },
+    image: {
+      type: String,
+      require: true,
+    },
+    cloudinaryId: {
+      type: String,
+      require: true,
+    },
     commonName: {
       type: String,
       trim: true,
