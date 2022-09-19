@@ -6,7 +6,22 @@
     <div class='card story'>
       <div class='card-content'>
         <span class='card-title'>{{formatDate date 'MMMM Do YYYY'}}</span>
-        {{{observation.details}}}
+        <div class='row'>
+          <div class='col m6'>Location (Lat/Long):
+            {{observation.latitude}}
+            /
+            {{observation.longitude}}
+            <div>Number observed: {{observation.number}}</div>
+          </div>
+          <div class='col m5 offset-m1'>Common Name:
+            {{observation.commonName}}
+            <div>General Taxa: {{capitalize observation.generalTaxa}}</div>
+          </div>
+        </div>
+        <div class='divider clear'></div>
+        <div class='clear'>
+          {{{observation.details}}}
+        </div>
       </div>
     </div>
   </div>
