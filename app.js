@@ -54,13 +54,14 @@ const {
   stripTags,
   editIcon,
   select,
+  capitalize,
 } = require('./helpers/hbs');
 
 // Bring in handlebars as view engine
 app.engine(
   '.hbs',
   engine({
-    helpers: { formatDate, truncate, stripTags, editIcon, select },
+    helpers: { formatDate, truncate, stripTags, editIcon, select, capitalize },
     defaultLayout: 'main',
     extname: '.hbs',
   })
