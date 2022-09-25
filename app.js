@@ -22,6 +22,7 @@ const observationRoutes = require('./routes/observations');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// Bring in methodOverride to allow for form PUT and DELETE operations
 app.use(
   methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -61,7 +62,14 @@ const {
 app.engine(
   '.hbs',
   engine({
-    helpers: { formatDate, truncate, stripTags, editIcon, select, capitalize },
+    helpers: {
+      formatDate,
+      truncate,
+      stripTags,
+      editIcon,
+      select,
+      capitalize,
+    },
     defaultLayout: 'main',
     extname: '.hbs',
   })

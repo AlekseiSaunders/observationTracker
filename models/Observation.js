@@ -29,7 +29,7 @@ const ObservationSchema2 = new mongoose.Schema(
     },
     generalTaxa: {
       type: String,
-      default: 'Mammal',
+      default: 'mammal',
       enum: [
         'mammal',
         'bird',
